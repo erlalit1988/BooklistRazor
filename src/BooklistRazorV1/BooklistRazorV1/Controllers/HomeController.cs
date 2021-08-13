@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BooklistRazorV1.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : FirstMVCIntroController
     {
         private readonly ILogger<HomeController> _logger;
 
