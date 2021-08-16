@@ -30,6 +30,27 @@ namespace BooklistRazorV1.Controllers
             return View();
         }
 
+        //Get action to display form
+        public IActionResult DisplayForm()
+        {
+            // Create person object
+            Person person = new Person { FirstName = "Din", LastName = "Den" };
+
+            //Send model to form
+            return View(person);
+
+        }
+
+        //Post action to get Model data as updated from the form
+        [HttpPost]
+        public IActionResult DisplayForm(Person person)
+        {
+            //Do whatever you need in your action with recevied data.
+           
+            //Here we will display as a string in the browser for the simplicity
+            return View(person.ToString());
+
+        }
         public IActionResult Privacy()
         {
            

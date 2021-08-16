@@ -11,6 +11,7 @@
     {
         <link rel="stylesheet" href="~/css/rtl.css" />
     }
+    @RenderSection("Header", false);
 
 </head>
 <body>
@@ -30,21 +31,24 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy" localize-content>Privacy</a>
                         </li>
-                       @* <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index1" localize-content>Index 1</a>
-                        </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index2" localize-content>Index 2 </a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="Index" localize-content>News</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index3" localize-content>Index 3</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index4" localize-content>Index 4</a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="EmpIndex">EmpIndex </a>
-                          </li>*@
+                        @* <li class="nav-item">
+                             <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index1" localize-content>Index 1</a>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index2" localize-content>Index 2 </a>
+                          </li>
+                          <li class="nav-item">
+                             <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index3" localize-content>Index 3</a>
+                         </li>
+                         <li class="nav-item">
+                           <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index4" localize-content>Index 4</a>
+                         </li>
+                         <li class="nav-item">
+                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="EmpIndex">EmpIndex </a>
+                     </li>*@
 
                     </ul>
                 </div>
