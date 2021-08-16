@@ -1,4 +1,4 @@
-﻿namespace ExpressLocalizationSampleCore3Mvc.LocalizationResources
+﻿namespace BooklistRazorV1.LocalizationResources
 {
     public class ExpressLocalizationResource
     {

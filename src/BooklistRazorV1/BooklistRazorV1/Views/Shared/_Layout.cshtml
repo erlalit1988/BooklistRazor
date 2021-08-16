@@ -3,9 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BooklistRazorV1</title>
+    <title><localize> @ViewData["Title"] </localize> - BooklistRazorV1</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+
+    @if (System.Globalization.CultureInfo.CurrentCulture.TextInfo.IsRightToLeft)
+    {
+        <link rel="stylesheet" href="~/css/rtl.css" />
+    }
+
 </head>
 <body>
     <header>
@@ -19,29 +25,30 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index" localize-content>Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy" localize-content>Privacy</a>
+                        </li>
+                        @*<li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index1" localize-content>Index 1</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index1">Index 1</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index2" localize-content>Index 2 </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index2">Index 2 </a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index3" localize-content>Index 3</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index3">Index 3</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index4">Index 4</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="HelloWorld" asp-action="Index">Index </a>
-                        </li>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="FirstMVCIntro" asp-action="Index4" localize-content>Index 4</a>
+                        </li>*@
+                        @*<li class="nav-item">
+                          <a class="nav-link text-dark" asp-area="" asp-controller="HelloWorld" asp-action="Index" localize-content>Index </a>
+                          </li>*@
 
                     </ul>
                 </div>
+                <language-nav language-label="NativeName" cookie-handler-url="@(Url.Action("OnGetSetCultureCookie", "", new { area= "", cltr="{0}", returnUrl="{1}" }))"></language-nav>
             </div>
         </nav>
     </header>
@@ -53,7 +60,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - BooklistRazorV1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - BooklistRazorV1 - <a asp-area="" asp-controller="Home" asp-action="Privacy" localize-content>Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
