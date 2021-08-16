@@ -1,13 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
+using LazZiya.ExpressLocalization;
+
+
 
 namespace BooklistRazorV1.Controllers
 {
+   // [Route("{culture}/FirstMVCIntro")]
     public class FirstMVCIntroController : Controller
     {
+        //private readonly ISharedCultureLocalizer sharedCulture;
+
+        public FirstMVCIntroController()
+        {
+           
+        }
+      //  [HttpGet]
+        //[ActionName("index1")]
         public IActionResult Index1()
         {
             return View();

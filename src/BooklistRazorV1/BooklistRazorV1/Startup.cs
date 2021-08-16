@@ -95,7 +95,7 @@ namespace BooklistRazorV1
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env /*,   IOptions<EmployeeLocationOptions> msgOptions*/)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env   /*, IOptions<EmployeeLocationOptions> msgOptions*/)
         {
             if (env.IsDevelopment())
             {
@@ -175,7 +175,7 @@ namespace BooklistRazorV1
             //location with class middleware
             app.UseMiddleware<EmployeeLocationMiddleware>();
 
-           /* //new middlerware for employee location based
+            //new middlerware for employee location based
             app.Use(async (context, next) =>
             {
                 if(context.Request.Path=="/Employeelocation")
@@ -197,13 +197,15 @@ namespace BooklistRazorV1
             app.UseRouting();
 
             app.UseAuthorization();
+
             app.UseRequestLocalization();
+
             app.UseEndpoints(endpoints =>
             {
-               /* endpoints.MapGet("/", async context =>
-                 {
-                     await context.Response.WriteAsync("Hello world!");
-                 });*/
+                 //endpoints.MapGet("/", async context =>
+                 //{
+                 //    await context.Response.WriteAsync("Hello world!");
+                 //});
 
                 endpoints.MapControllerRoute(
                     name: "default",
