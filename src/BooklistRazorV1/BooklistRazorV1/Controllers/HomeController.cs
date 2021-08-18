@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -43,12 +44,16 @@ namespace BooklistRazorV1.Controllers
 
         //Post action to get Model data as updated from the form
         [HttpPost]
-        public IActionResult DisplayForm(Person person)
+        public IActionResult DisplayForm(IFormCollection ifc)
         {
             //Do whatever you need in your action with recevied data.
-           
+            Person obj = new();
+            obj.FirstName = ifc["FirstName"];
+            obj.LastName = ifc["LastName"];
+            DateTime mydate = DateTime.ParseExact(ifc["DateOfBirth"], "dd/MM/yyyy", CultureInfo.CurrentCulture);
+            obj.DateOfBirth = mydate;
             //Here we will display as a string in the browser for the simplicity
-            return View(person.ToString());
+            return View(obj);
 
         }
         public IActionResult Privacy()

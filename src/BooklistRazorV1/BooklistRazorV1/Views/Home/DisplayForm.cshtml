@@ -5,9 +5,9 @@
 
 }
 
-@section Header{ 
-    <link href="~/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" />
-    
+@section Header{
+    @*<link href="~/bootstrap-datepicker/css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" />*@
+    <link href="~/jqueryui/jquery-ui.css" rel="stylesheet" />
 }
 <h1>DisplayForm</h1>
 
@@ -30,6 +30,13 @@
             <div class="form-group">
                 <label asp-for="DateOfBirth" class="control-label"></label>
                 <input asp-for="DateOfBirth" type="text" class="form-control" id="datepicker" />
+                <select id="locale">
+                    <option value="ar">Arabic (&#x202B;(&#x627;&#x644;&#x639;&#x631;&#x628;&#x64A;&#x629;</option>
+                    <option value="zh-TW">Chinese Traditional (&#x7E41;&#x9AD4;&#x4E2D;&#x6587;)</option>
+                    <option value="">English</option>
+                    <option value="fr" selected="selected">French (Fran&#xE7;ais)</option>
+                    <option value="he">Hebrew (&#x202B;(&#x5E2;&#x5D1;&#x5E8;&#x5D9;&#x5EA;</option>
+                </select>
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -42,22 +49,65 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<
 @section Scripts{
 
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
-    <script src="~/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script src="~/bootstrap-datepicker/locales/bootstrap-datepicker.ar-tn.min.js"></script>
+
+    <script src="~/jqueryui/jquery-ui.min.js"></script>
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">*@
+   <link href="~/jqueryui/jquery-ui.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="/resources/demos/style.css">*@
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="i18n/datepicker-ar.js"></script>
+    <script src="i18n/datepicker-fr.js"></script>
+    <script src="i18n/datepicker-he.js"></script>
+
     <script type="text/javascript">
         $(function () {
-            $("#datepicker").datepicker({
-                format: "dd/MM/yyyy",
-                startView: 2,
-                language: "ar"
+            $("#datepicker")
+                .wrap('<div class="input-group">')
+                .datepicker({
+                    dateFormat: "dd/MM/yyy",
+                    changeYear: true,
+                    yearRange: "-70:+0",//year selection is possible from starting 70 years before now
+                    showOn: "both",
+                    regional: "ar"
+                })
+                .next("button").button({
+                    icons: { primary: "ui-icon-calender" },
+                    label: "Select Date",
+                    text: false
+
+                })
+                .addClass("btn btn-default")
+                .wrap('<span class="input-group-btn">')
+                .find('.ui-button-text')
+                .css({
+                    'visibility': 'hidden',
+                    'display': 'inline'
+                });
+            $("#datepicker").datepicker($.datepicker.regional["fr"]);
+            $("#locale").on("change", function () {
+                $("#datepicker").datepicker("option",
+                    $.datepicker.regional[$(this).val()]);
+            });
+        });
+    </script>
+    @*<script src="~/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+        <script src="~/bootstrap-datepicker/locales/bootstrap-datepicker.ar-tn.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+                $("#datepicker").datepicker({
+                    format: "dd/MM/yyyy",
+                    startView: 2,
+                    language: "ar"
+
+                });
 
             });
-
-        });
-    </script>  
+        </script>*@
 
 }
 

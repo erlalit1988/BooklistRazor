@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkingWithControllers", "WorkingWithControllers\WorkingWithControllers.csproj", "{E20F3A07-9293-4FD5-8CF5-C969EAAE73CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E20F3A07-9293-4FD5-8CF5-C969EAAE73CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E20F3A07-9293-4FD5-8CF5-C969EAAE73CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E20F3A07-9293-4FD5-8CF5-C969EAAE73CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E20F3A07-9293-4FD5-8CF5-C969EAAE73CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3D3F9149-27FD-45DB-9084-1154E9ED9B93}
+	EndGlobalSection
+EndGlobal
