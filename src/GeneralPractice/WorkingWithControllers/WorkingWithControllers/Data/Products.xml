@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Products>
+	<Product>
+		<Value>1</Value>
+		<Name>Oil</Name>
+	</Product>
+    <Product>
+		<Value>2</Value>
+		<Name>Sampoo</Name>
+	</Product>
+</Products>

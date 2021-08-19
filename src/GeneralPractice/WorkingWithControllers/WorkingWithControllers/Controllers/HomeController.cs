@@ -2,11 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+
+using System.Text;
 using System.Threading.Tasks;
 using WorkingWithControllers.Models;
 
@@ -99,5 +103,55 @@ namespace WorkingWithControllers.Controllers
 
             return RedirectToRoute("WishUser");
         }
+        public FileResult DownloadFile()
+        {
+            return File("/css/site.css", "text/plain", "newwrite.css");
+        }
+        public FileResult ShowLogo()
+        {
+            return File("./images/Logo.png", "imgaes/png");
+        }
+        public FileContentResult DownloadContent()
+        {
+            var myFile = System.IO.File.ReadAllBytes("./wwwroot/css/site.css");
+            return new FileContentResult(myFile, "text/plain");
+
+            //var myFile = System.IO.File.ReadAllBytes("./Data/Products.xml");
+            //return new FileContentResult(myFile, "text/xml");
+        }
+        public FileStreamResult CreateFile()
+        {
+            var stream = new MemoryStream(Encoding.ASCII.GetBytes("Hello World"));
+            return new FileStreamResult(stream, new MediaTypeHeaderValue("text/plain"))
+            {
+                FileDownloadName = "text.txt"
+            };
+        }
+        public VirtualFileResult VirtualFileResultDemo()
+        {
+            return new VirtualFileResult("/css/site.css", "text/plain");
+        }
+        public PhysicalFileResult ShowProducts()
+        {
+            return new PhysicalFileResult(_environment.ContentRootPath + "/Data/Products.xml","text/xml");
+        }
+        public PhysicalFileResult PhysicalFileResultDemo()
+        {
+            return new PhysicalFileResult(_environment.ContentRootPath+ "/wwwroot/css/site.css", "text/plain");
+        }
+        public JsonResult ShowNewProducts()
+        {
+            Product prod = new() { ProductCode = 101, ProductName = "Printer", Cost = 1500 };
+            return Json(prod);
+        }
+        public EmptyResult EmptyResultDemo()
+        {
+            return new EmptyResult();
+        }
+        public NoContentResult NoContentResultDemo()
+        {
+            return NoContent();
+        }
+
     }
 }
