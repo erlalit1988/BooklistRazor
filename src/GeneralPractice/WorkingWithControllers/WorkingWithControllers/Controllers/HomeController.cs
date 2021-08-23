@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
@@ -21,7 +22,7 @@ namespace WorkingWithControllers.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IHostEnvironment _environment;
 
-        public HomeController(ILogger<HomeController> logger,IHostEnvironment environment)
+        public HomeController(ILogger<HomeController> logger, IHostEnvironment environment)
         {
             _logger = logger;
             _environment = environment;
@@ -42,7 +43,7 @@ namespace WorkingWithControllers.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public ViewResult WishUser(string message="Default Message")
+        public ViewResult WishUser(string message = "Default Message")
         {
             ViewBag.Message = message;
             return View();
@@ -66,7 +67,7 @@ namespace WorkingWithControllers.Controllers
             Person obj = new();
             obj.FirstName = ifc["FirstName"];
             obj.LastName = ifc["LastName"];
-            DateTime  mydate= DateTime.ParseExact(ifc["DateOfBirth"],"dd/MM/yyyy",CultureInfo.CurrentCulture);
+            DateTime mydate = DateTime.ParseExact(ifc["DateOfBirth"], "dd/MM/yyyy", CultureInfo.CurrentCulture);
             obj.DateOfBirth = mydate;
             //Here we will display as a string in the browser for the simplicity
             return View(obj);
@@ -81,7 +82,7 @@ namespace WorkingWithControllers.Controllers
             //return Content(_environment.EnvironmentName);
             //return Content(_environment.WebRootPath);
         }
-        public RedirectResult GoToURL( )
+        public RedirectResult GoToURL()
         {
             //Http status code:302
             return Redirect("http://www.google.com");
@@ -95,7 +96,7 @@ namespace WorkingWithControllers.Controllers
 
         public RedirectToActionResult GotoContactsAction()
         {
-            
+
             return RedirectToAction("WishUser", new { Message = "I am coming from a different action...." });
         }
         public RedirectToRouteResult GoToAbout()
@@ -133,11 +134,11 @@ namespace WorkingWithControllers.Controllers
         }
         public PhysicalFileResult ShowProducts()
         {
-            return new PhysicalFileResult(_environment.ContentRootPath + "/Data/Products.xml","text/xml");
+            return new PhysicalFileResult(_environment.ContentRootPath + "/Data/Products.xml", "text/xml");
         }
         public PhysicalFileResult PhysicalFileResultDemo()
         {
-            return new PhysicalFileResult(_environment.ContentRootPath+ "/wwwroot/css/site.css", "text/plain");
+            return new PhysicalFileResult(_environment.ContentRootPath + "/wwwroot/css/site.css", "text/plain");
         }
         public JsonResult ShowNewProducts()
         {
@@ -152,6 +153,55 @@ namespace WorkingWithControllers.Controllers
         {
             return NoContent();
         }
+        public BadRequestResult BRRDemo()
+        {
+            return BadRequest();
+        }
+        public StatusCodeResult StatusCodeResultDemo()
+        {
+            return StatusCode(StatusCodes.Status400BadRequest);
 
+        }
+        public BadRequestObjectResult BadRequestObjectResultDemo()
+        {
+            var modelState = new ModelStateDictionary();
+            modelState.AddModelError("br", "Bad Request.");
+            return BadRequest(modelState);
+        }
+        public UnauthorizedResult UnauthorizedResultDemo()
+        {
+            return Unauthorized();
+        }
+        public UnauthorizedObjectResult  UnauthorizedObjecResultDemo()
+        {
+            var modelState = new ModelStateDictionary();
+            modelState.AddModelError("br", "You are not authorized to visit this area.");
+            
+            return Unauthorized(modelState);
+        }
+        public NotFoundResult NotFoundResultDemo()
+        {
+            return NotFound();
+        }
+        public NotFoundObjectResult NotFoundObjectResultDemo()
+        {
+            return NotFound(new { CutomerId = 1, error = "Not found that CustomerId." });
+        }
+        public OkObjectResult ReturnOk()
+        {
+            return Ok(new string[] { "o","k","a","y" });
+        }
+        public OkObjectResult OkObjectResultDemo()
+        {
+            return new OkObjectResult(new { Message = "Okay!!" });
+        }
+        public PartialViewResult showChildViewContent()
+        {
+            Product prod = new();
+            prod.ProductCode = 104;
+            prod.ProductName = "Mouse";
+            prod.Cost = 1200;
+            return PartialView(prod);
+        }
     }
 }

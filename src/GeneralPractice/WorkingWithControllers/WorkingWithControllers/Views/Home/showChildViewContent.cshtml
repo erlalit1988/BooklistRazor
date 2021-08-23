@@ -1,0 +1,20 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "showChildViewContent";
+}
+
+<h1>showChildViewContent</h1>
+
+<h1>Hey! I am going to get some new content from Child View Shortly!!</h1>
+
+<partial name="ChildView" />
+@{ 
+
+}
+@await Html.PartialAsync("ChildView", Model);
+
+@{ 
+    await Html.RenderPartialAsync("ChildView");
+}
+
+<h1>You Can see the Child view Content as above</h1>
