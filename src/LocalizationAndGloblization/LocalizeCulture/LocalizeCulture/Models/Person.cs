@@ -8,16 +8,18 @@ namespace LocalizeCulture.Models
 {
     public class Person
     {
-        [Required]
+        [Required(ErrorMessage ="Name is Requried")]
         [Display(Name ="First Name")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Last Name is Requried")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Date of birth is Requried")]
         [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString ="{0:dd/MM/yyyy}")]
         public DateTime DateOfBirth { get; set; }
     }
 }

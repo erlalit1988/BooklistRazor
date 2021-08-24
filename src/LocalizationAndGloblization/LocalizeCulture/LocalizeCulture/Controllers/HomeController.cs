@@ -1,4 +1,5 @@
 ﻿using LocalizeCulture.Models;
+using LocalizeCulture.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -43,14 +45,15 @@ namespace LocalizeCulture.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(IFormCollection Skeys)
+        public IActionResult Create(Person person)
         {
-            Person obj = new()
-            {
-                FirstName=Skeys["FirstName"],
-                LastName=Skeys["LastName"],
-                DateOfBirth=DateTime.Parse(Skeys["DateOfBirth"])
-            };
+          //  string format = "{0:dd/MM/yyyy}";
+            Person obj = new();
+
+            obj.FirstName = person.FirstName;
+            obj.LastName = person.LastName;
+            obj.DateOfBirth = person.DateOfBirth;
+           
             
             return View();
         }
@@ -80,6 +83,31 @@ namespace LocalizeCulture.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet]
+        public ViewResult RegisterForm()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ViewResult RegisterForm(WebinarInvites resgistrationResponse)
+        {
+            if(ModelState.IsValid)
+            {
+                Repository.AddResponses(resgistrationResponse);
+                return View("ThankYou", resgistrationResponse);
+            }
+            else
+            {
+                return View();
+            }
+           
+        }
+
+        public ViewResult ListResponses()
+        {
+            return View(Repository.Response.Where(r => r.WillJoin == true));
         }
     }
 }
