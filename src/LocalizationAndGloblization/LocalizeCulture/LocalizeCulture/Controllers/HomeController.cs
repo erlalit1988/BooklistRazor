@@ -25,6 +25,7 @@ namespace LocalizeCulture.Controllers
 
 
 
+        
         public HomeController(ILogger<HomeController> logger,/*IHtmlLocalizer<HomeController> localizer*/ IStringLocalizer<HomeController> localizer)
         {
             _logger = logger;

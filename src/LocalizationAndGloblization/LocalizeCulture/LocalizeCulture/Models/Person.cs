@@ -18,8 +18,8 @@ namespace LocalizeCulture.Models
 
         [Required(ErrorMessage = "Date of birth is Requried")]
         [Display(Name = "Date of Birth")]
-        [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode =true, DataFormatString ="{0:dd/MM/yyyy}")]
-        public DateTime DateOfBirth { get; set; }
+        public string DateOfBirth { get; set; }
+       
     }
 }

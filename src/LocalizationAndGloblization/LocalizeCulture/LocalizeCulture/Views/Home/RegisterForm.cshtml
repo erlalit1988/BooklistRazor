@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "RegisterForm";
 }
-
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 <h1>RegisterForm</h1>
 
 <h5 class="bg-primary text-white text-center m-2 p-2">Registration Form</h5>
@@ -11,19 +11,19 @@
     <div asp-validation-summary="All"></div>
 
     <div class="form-group">
-        <label asp-for="Name">Your Name:</label>
+        <label asp-for="Name">@localizer["Your Name:"]</label>
         <input asp-for="Name" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="Email">Your Email:</label>
+        <label asp-for="Email">@localizer["Your Email:"]</label>
         <input asp-for="Email" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="Phone">Your Phone:</label>
+        <label asp-for="Phone">@localizer["Your Phone:"]</label>
         <input asp-for="Phone" class="form-control" />
     </div>
     <div class="form-group">
-        <label>Will you attend?</label>
+        <label>@localizer["Will you attend?"]</label>
         <select asp-for="WillJoin" class="form-control">
             <option value="">Choose an option</option>
             <option value="true">Yes, I'll join Virtual Conference.</option>
