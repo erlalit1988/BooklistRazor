@@ -139,7 +139,7 @@ namespace CaptchaDemo.Models
 
                     BitmapData bitmapData=baseMap.LockBits(new Rectangle(0,0,baseMap.Width,baseMap.Height),ImageLockMode.ReadWrite,PixelFormat.Format32bppArgb);
                     BitmapData bmSrc = baseMap.LockBits(new Rectangle(0, 0, bSrc.Width, bSrc.Height), ImageLockMode.ReadOnly,PixelFormat.Format32bppArgb);
-
+                    //https://edi.wang/post/2018/10/13/generate-captcha-code-aspnet-core
                 }
             }
 
