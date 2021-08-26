@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div>
+    <form asp-controller="Home" asp-action="Index" method="post">
+        <img src="/Home/GetImage"/>
+        
+        <input type="text" name="CaptchaCode" />
+        @ViewBag.IsVerified
+    </form>
+</div>
