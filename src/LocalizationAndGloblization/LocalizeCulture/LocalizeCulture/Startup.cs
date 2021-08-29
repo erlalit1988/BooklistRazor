@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -52,7 +53,15 @@ namespace LocalizeCulture
             //        otp.SupportedUICultures = supportedCultuers;
             //        otp.DefaultRequestCulture = new RequestCulture("en");
             //    });
-            services.AddControllersWithViews()
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+                options.Cookie.IsEssential = true;
+            });
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            
+            services.AddControllersWithViews()/*.AddSessionStateTempDataProvider()*/
             .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
             services.Configure<RequestLocalizationOptions>(
@@ -68,6 +77,7 @@ namespace LocalizeCulture
                     otp.SupportedUICultures = supportedCultuers;
                     otp.DefaultRequestCulture = new RequestCulture("en");
                 });
+            //services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -90,6 +100,8 @@ namespace LocalizeCulture
 
             app.UseAuthorization();
 
+            app.UseSession();
+
             app.UseRequestLocalization(app.ApplicationServices.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
             //var supportedCultures = new[] { "en", "ar", "hi" };
             //var locatizationsOptions = new RequestLocalizationOptions().SetDefaultCulture(supportedCultures[2])
@@ -100,7 +112,7 @@ namespace LocalizeCulture
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Products}/{action=Index}/{id?}");
             });
         } 
     }

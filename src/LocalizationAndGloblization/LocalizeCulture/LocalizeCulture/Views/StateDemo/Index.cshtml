@@ -1,0 +1,36 @@
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
+    ViewData["Title"] = "StateDemoIndex";
+}
+
+<h1>@ViewData["Ecode"]</h1>
+<h1>@ViewData["Ename"]</h1>
+<h1>@ViewData["Message"]</h1>
+<h1>@ViewBag.Message</h1>
+
+<h1>@TempData["Country"]</h1>
+
+<h1>When an object in a TempDataDictionary is read, it will be marked for deletion at the end of that request</h1>
+<h1>The Peek and keep methods allow you to read the value without marking it for deletion</h1>
+@{ 
+    if(TempData.Peek("Country")!=null)
+            {
+                <h3>
+                    Message:@TempData.Peek("Country")
+                </h3>
+            }
+}
+
+<h1>Keep Country</h1>
+<h1>With keep you specify a key that was marked for deletion that you want to keep</h1>
+@{ 
+    if(TempData["Country"]!=null)
+            {
+                <h3>Message:@TempData["Country"]</h3>
+            }
+    TempData.Keep("Country");
+
+}
+<form asp-controller="StateDemo" asp-action="Index" method="post">
+    <input type="submit" />
+</form>

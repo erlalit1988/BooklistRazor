@@ -1,7 +1,12 @@
 ﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @{
     ViewData["Title"] = "Privacy Policy";
 }
 <h1>@ViewData["Title"]</h1>
 
 <p><b>@localizer["Use this page to detail your site's privacy policy."]</b></p>
+
+@*<h1>Reading Cooking Data @HttpContextAccessor.HttpContext.Request.Cookies["UserName"]</h1>*@
+<h1>Reading Cooking Data @HttpContextAccessor.HttpContext.Session.GetString("MyUserName")</h1>

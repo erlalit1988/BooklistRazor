@@ -1,0 +1,33 @@
+﻿@model Product
+
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => modelItem.ProductId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => modelItem.ProductName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => modelItem.Quantity)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => modelItem.UnitsInStock)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => modelItem.Discontinued)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => modelItem.Cost)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => modelItem.Tax)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => modelItem.LaunchDate)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+        @Html.ActionLink("Details", "Details", new { id = Model.ProductId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = Model.ProductId })
+    </td>
+</tr>

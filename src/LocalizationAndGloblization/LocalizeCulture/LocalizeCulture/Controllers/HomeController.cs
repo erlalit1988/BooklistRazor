@@ -21,22 +21,42 @@ namespace LocalizeCulture.Controllers
         private readonly ILogger<HomeController> _logger;
         //private readonly IHtmlLocalizer<HomeController> _localizer;
 
-       private readonly IStringLocalizer<HomeController> _localizer;
+        private readonly IStringLocalizer<HomeController> _localizer;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-
-
-        
-        public HomeController(ILogger<HomeController> logger,/*IHtmlLocalizer<HomeController> localizer*/ IStringLocalizer<HomeController> localizer)
+        public HomeController(ILogger<HomeController> logger,/*IHtmlLocalizer<HomeController> localizer*/ IStringLocalizer<HomeController> localizer, IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
            // this.localizer = localizer;
             _localizer = localizer;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public IActionResult Index()
         {
+            ViewData["Ecode"] = "101";
+            ViewData["Ename"] = "Connors";
+
+            ViewBag.Message = "This is coming from ViewBag.Message";
+            //CookieOptions option = new CookieOptions();
+            //option.Expires = DateTime.Now.AddMinutes(5);
+            //_httpContextAccessor.HttpContext.Response.Cookies.Append("UserName", "Lalit");
+
             var test = _localizer["HelloWorld"];
             ViewBag.Test = test;
+            return View();
+        }
+        public IActionResult CookieIndex()
+        {
+            // _httpContextAccessor.HttpContext.Response.Cookies.Delete("UserName");
+            //CookieOptions option = new CookieOptions();
+            //option.Expires = DateTime.Now.AddMinutes(5);
+            //_httpContextAccessor.HttpContext.Response.Cookies.Append("UserName", "Lalit");
+
+            //_httpContextAccessor.HttpContext.Session.SetString("MyUserName", "Lalit");
+            //ViewBag.SessionID = _httpContextAccessor.HttpContext.Session.Id;
+            _httpContextAccessor.HttpContext.Session.Remove("MyUserName");
+            //_httpContextAccessor.HttpContext.Session.Clear();
             return View();
         }
         [HttpGet]

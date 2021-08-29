@@ -13,6 +13,14 @@
     {
       "library": "bootstrap-datepicker@1.9.0",
       "destination": "wwwroot/bootstrap-datepicker/"
+    },
+    {
+      "library": "moment.js@2.29.1",
+      "destination": "wwwroot/moment.js/"
+    },
+    {
+      "library": "popper.js@2.9.3",
+      "destination": "wwwroot/popper.js/"
     }
   ]
 }
