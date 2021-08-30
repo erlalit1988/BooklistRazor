@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    ViewData["SomeData"] = "Some data";
 }
 
 <h1>Index</h1>
@@ -41,7 +42,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <partial name="_ShowProductData" model="item"/>
+        <partial name="_ShowProductData" model="item" view-data="ViewData"/>
 }
     </tbody>
 </table>
