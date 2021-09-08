@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace LocalizeCulture.Models
+namespace MvcDemoV1.Models
 {
     public class Category
     {
@@ -12,7 +12,7 @@ namespace LocalizeCulture.Models
 
         public string CategoryName { get; set; }
 
-        public IEnumerable<NProduct> Products { get; set; }
+        public IEnumerable<Product> Products { get; set; }
 
 
         public List<SelectListItem> Categories { get; } = new List<SelectListItem>
