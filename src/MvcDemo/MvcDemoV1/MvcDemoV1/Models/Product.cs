@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,10 +10,10 @@ namespace MvcDemoV1.Models
 {
     public class Product
     {
-        // [BindNever]
+       // [BindNever]
         public int ProductID { get; set; }
 
-        // [BindNever]
+        //[BindNever]
         public string ProductName { get; set; }
 
         public string ProductDescription { get; set; }
