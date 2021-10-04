@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<ViewComponentDemo.Models.Product>
-
+@addTagHelper *,ViewComponentDemo
 @{
     ViewData["Title"] = "Index";
 }
@@ -82,7 +82,7 @@
         <vc:product-summary units="45" />
         @*<vc:product-summary  />*@
     </div>
- <div class="bg-info text-white m-2 p-2">
-        <vc:product-controller-hybrid units="45"/>
+    <div class="bg-info text-white m-2 p-2">
+        <vc:product-controller-hybrid units="45" />
     </div>
 }

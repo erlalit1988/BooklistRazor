@@ -50,6 +50,16 @@ namespace ViewComponentDemo
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name:"MyAdminSupport",
+                    areaName: "AdminSupport",
+                    pattern: "AdminSupport/{controller=Home}/{action=Index}/{id?}"
+                    );
+                endpoints.MapAreaControllerRoute(
+                    name: "MyBilling",
+                    areaName: "Billing",
+                    pattern: "Billing/{controller=Home}/{action=Index}/{id?}"
+                    );
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
